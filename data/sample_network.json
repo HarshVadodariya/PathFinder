@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "name": "Sample Lab: Retail Web Stack",
+    "source": "sample",
+    "synthetic": true,
+    "description": "Illustrative synthetic network. All identifiers (SAMPLE-*) are fictional; nothing here requires or implies exploitation."
+  },
+  "assets": [
+    {"id": "gw",  "ip": "203.0.113.10", "hostname": "gw.lab.local",  "os": "Linux (appliance)", "role": "Network Gateway",    "zone": "DMZ",        "exposure": "Internet-facing", "criticality": 3, "is_critical": false},
+    {"id": "web", "ip": "10.10.10.20",  "hostname": "web01.lab.local", "os": "Ubuntu 18.04",    "role": "Web Server",         "zone": "DMZ",        "exposure": "Internet-facing", "criticality": 3, "is_critical": false},
+    {"id": "app", "ip": "10.10.20.30",  "hostname": "app01.lab.local", "os": "Ubuntu 20.04",    "role": "Application Server", "zone": "Internal",   "exposure": "Internal",        "criticality": 4, "is_critical": false},
+    {"id": "db",  "ip": "10.10.30.40",  "hostname": "db01.lab.local",  "os": "Debian 11",       "role": "Database Server",    "zone": "Restricted", "exposure": "Restricted",      "criticality": 5, "is_critical": true},
+    {"id": "ws",  "ip": "10.10.20.50",  "hostname": "ws-hr-07.lab.local", "os": "Windows 10",   "role": "Workstation",        "zone": "Corporate LAN", "exposure": "Internal",     "criticality": 2, "is_critical": false}
+  ],
+  "services": [
+    {"asset_id": "gw",  "port": 443,  "protocol": "tcp", "name": "https",         "product": "SampleVPN Gateway", "version": "2.1"},
+    {"asset_id": "gw",  "port": 22,   "protocol": "tcp", "name": "ssh",           "product": "OpenSSH",           "version": "6.6.1"},
+    {"asset_id": "web", "port": 80,   "protocol": "tcp", "name": "http",          "product": "Apache httpd",      "version": "2.4.29"},
+    {"asset_id": "web", "port": 443,  "protocol": "tcp", "name": "https",         "product": "Apache httpd",      "version": "2.4.29"},
+    {"asset_id": "web", "port": 22,   "protocol": "tcp", "name": "ssh",           "product": "OpenSSH",           "version": "7.6p1"},
+    {"asset_id": "app", "port": 8443, "protocol": "tcp", "name": "https-alt",     "product": "SampleAPI",         "version": "1.4"},
+    {"asset_id": "app", "port": 22,   "protocol": "tcp", "name": "ssh",           "product": "OpenSSH",           "version": "7.9p1"},
+    {"asset_id": "db",  "port": 5432, "protocol": "tcp", "name": "postgresql",    "product": "PostgreSQL DB",     "version": "9.6.2"},
+    {"asset_id": "db",  "port": 22,   "protocol": "tcp", "name": "ssh",           "product": "OpenSSH",           "version": "8.4p1"},
+    {"asset_id": "ws",  "port": 445,  "protocol": "tcp", "name": "microsoft-ds",  "product": "Windows SMB",       "version": ""},
+    {"asset_id": "ws",  "port": 3389, "protocol": "tcp", "name": "ms-wbt-server", "product": "Microsoft RDP",     "version": ""}
+  ],
+  "findings": [
+    {"id": "F-001", "asset_id": "gw",  "port": 443,  "cve": "SAMPLE-CVE-2026-0001", "cvss": 9.8, "status": "manual_lab", "category": "outdated_software", "description": "Sample VPN gateway authentication bypass (synthetic lab finding).", "remediation": "Upgrade the gateway to the patched release."},
+    {"id": "F-002", "asset_id": "web", "port": 443,  "cve": "SAMPLE-CVE-2026-0002", "cvss": 8.1, "status": "manual_lab", "category": "outdated_software", "description": "Sample web application file-handling flaw allowing code execution (synthetic).", "remediation": "Patch the web application and review upload handling."},
+    {"id": "F-003", "asset_id": "web", "port": 80,   "cve": "SAMPLE-CVE-2026-0003", "cvss": 6.5, "status": "manual_lab", "category": "weak_access", "description": "Administrative panel reachable without strong authentication (synthetic)."},
+    {"id": "F-004", "asset_id": "app", "port": 8443, "cve": "SAMPLE-CVE-2026-0004", "cvss": 8.8, "status": "manual_lab", "category": "weak_access", "description": "Sample API authorisation flaw lets low-privilege tokens call admin routes (synthetic)."},
+    {"id": "F-005", "asset_id": "app", "port": 22,   "cve": "SAMPLE-CVE-2026-0005", "cvss": 5.3, "status": "potential",  "category": "outdated_software", "description": "SSH version string may correspond to an older release; unverified."},
+    {"id": "F-006", "asset_id": "db",  "port": 5432, "cve": "SAMPLE-CVE-2026-0006", "cvss": 7.5, "status": "confirmed",  "category": "weak_access", "description": "Database accepts a weak authentication method from the application subnet (synthetic)."},
+    {"id": "F-007", "asset_id": "ws",  "port": 445,  "cve": "SAMPLE-CVE-2026-0007", "cvss": 8.1, "status": "potential",  "category": "outdated_software", "description": "SMB build may be missing a security update; unverified."},
+    {"id": "F-008", "asset_id": "ws",  "port": 3389, "cve": "SAMPLE-CVE-2026-0008", "cvss": 6.8, "status": "manual_lab", "category": "weak_access", "description": "RDP allows password-only logon for a shared lab account (synthetic)."},
+    {"id": "F-009", "asset_id": "web", "port": 22,   "cve": "", "cvss": null, "status": "potential", "category": "outdated_software", "description": "Banner suggests an older SSH release; severity not assessed (unknown)."}
+  ],
+  "relationships": [
+    {"src": "gw",  "dst": "web", "type": "CONNECTS_TO", "port": 443,  "confidence": 0.8, "note": "Gateway proxies to the web tier"},
+    {"src": "gw",  "dst": "app", "type": "TRUSTS",      "port": null, "confidence": 0.5, "note": "Gateway service account trusted by app admin interface (assumption)"},
+    {"src": "web", "dst": "app", "type": "CONNECTS_TO", "port": 8443, "confidence": 0.9, "note": "Web tier calls the application API"},
+    {"src": "web", "dst": "app", "type": "TRUSTS",      "port": null, "confidence": 0.6, "note": "Shared deployment credentials (assumption)"},
+    {"src": "app", "dst": "db",  "type": "CONNECTS_TO", "port": 5432, "confidence": 0.9, "note": "Application queries the database"},
+    {"src": "ws",  "dst": "app", "type": "CONNECTS_TO", "port": 8443, "confidence": 0.8, "note": "Staff use the internal API"},
+    {"src": "ws",  "dst": "db",  "type": "CONNECTS_TO", "port": 5432, "confidence": 0.4, "note": "Legacy reporting access (assumption)"}
+  ]
+}

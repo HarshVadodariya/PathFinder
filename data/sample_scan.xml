@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun scanner="nmap" args="nmap -sV -oX sample_scan.xml (synthetic lab data)" start="1760000000" startstr="Thu Oct  9 08:53:20 2025" version="7.95" xmloutputversion="1.05">
+<host starttime="1760000000" endtime="1760000030"><status state="up" reason="syn-ack"/><address addr="203.0.113.10" addrtype="ipv4"/>
+<hostnames><hostname name="gw.lab.local" type="PTR"/></hostnames><ports>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack"/><service name="https" product="SampleVPN Gateway" version="2.1"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack"/><service name="ssh" product="OpenSSH" version="6.6.1"/></port>
+</ports><os><osmatch name="Linux (appliance)" accuracy="90"/></os></host>
+<host starttime="1760000000" endtime="1760000030"><status state="up" reason="syn-ack"/><address addr="10.10.10.20" addrtype="ipv4"/>
+<hostnames><hostname name="web01.lab.local" type="PTR"/></hostnames><ports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack"/><service name="http" product="Apache httpd" version="2.4.29"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack"/><service name="https" product="Apache httpd" version="2.4.29"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack"/><service name="ssh" product="OpenSSH" version="7.6p1"/></port>
+</ports><os><osmatch name="Ubuntu 18.04" accuracy="90"/></os></host>
+<host starttime="1760000000" endtime="1760000030"><status state="up" reason="syn-ack"/><address addr="10.10.20.30" addrtype="ipv4"/>
+<hostnames><hostname name="app01.lab.local" type="PTR"/></hostnames><ports>
+<port protocol="tcp" portid="8443"><state state="open" reason="syn-ack"/><service name="https-alt" product="SampleAPI" version="1.4"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack"/><service name="ssh" product="OpenSSH" version="7.9p1"/></port>
+</ports><os><osmatch name="Ubuntu 20.04" accuracy="90"/></os></host>
+<host starttime="1760000000" endtime="1760000030"><status state="up" reason="syn-ack"/><address addr="10.10.30.40" addrtype="ipv4"/>
+<hostnames><hostname name="db01.lab.local" type="PTR"/></hostnames><ports>
+<port protocol="tcp" portid="5432"><state state="open" reason="syn-ack"/><service name="postgresql" product="PostgreSQL DB" version="9.6.2"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack"/><service name="ssh" product="OpenSSH" version="8.4p1"/></port>
+</ports><os><osmatch name="Debian 11" accuracy="90"/></os></host>
+<host starttime="1760000000" endtime="1760000030"><status state="up" reason="syn-ack"/><address addr="10.10.20.50" addrtype="ipv4"/>
+<hostnames><hostname name="ws-hr-07.lab.local" type="PTR"/></hostnames><ports>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack"/><service name="microsoft-ds" product="Windows SMB" version=""/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack"/><service name="ms-wbt-server" product="Microsoft RDP" version=""/></port>
+</ports><os><osmatch name="Windows 10" accuracy="90"/></os></host>
+<runstats><finished time="1760000150" summary="Nmap done: 5 IP addresses (5 hosts up) scanned" exit="success"/></runstats></nmaprun>

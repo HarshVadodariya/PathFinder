@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+html, body, [class*="css"], .stApp { font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; }
+.block-container { padding-top: 2.2rem; max-width: 1280px; }
+h1, h2, h3 { letter-spacing: -0.01em; font-weight: 600; }
+[data-testid="stSidebar"] { border-right: 1px solid #263341; }
+[data-testid="stMetric"] { background: #151D27; border: 1px solid #263341; border-left: 3px solid #4FB3BF;
+  border-radius: 4px; padding: 14px 16px; }
+[data-testid="stMetricLabel"] p { color: #8A98A8; font-size: .82rem; }
+[data-testid="stMetricValue"] { font-variant-numeric: tabular-nums; font-weight: 600; }
+.pf-title { font-size: 1.7rem; font-weight: 600; margin: 0; }
+.pf-sub { color: #8A98A8; margin: .15rem 0 1.2rem 0; }
+.pf-note { border: 1px solid #3A3220; background: #1F1B12; color: #E3C888; border-radius: 4px; padding: .55rem .8rem; font-size: .88rem; }
+.pf-chip { display: inline-block; padding: 1px 9px; border-radius: 3px; font-size: .78rem; font-weight: 500; border: 1px solid; }
+.pf-Critical { color: #E5645B; border-color: #E5645B55; } .pf-High { color: #E8894F; border-color: #E8894F55; }
+.pf-Medium { color: #E3C04F; border-color: #E3C04F55; } .pf-Low { color: #6BAE8B; border-color: #6BAE8B55; }
+.pf-chain { font-size: 1.02rem; line-height: 1.7; }
+[data-testid="stDataFrame"] { border: 1px solid #263341; border-radius: 4px; }
+button:focus-visible, [role="tab"]:focus-visible { outline: 2px solid #4FB3BF !important; outline-offset: 2px; }

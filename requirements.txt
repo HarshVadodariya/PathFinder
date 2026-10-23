@@ -1,0 +1,6 @@
+streamlit>=1.40
+plotly>=5.20
+networkx>=3.2
+pandas>=2.0
+reportlab>=4.0
+pytest>=8.0
